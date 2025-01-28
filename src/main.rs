@@ -142,6 +142,9 @@ async fn main() {
             keypair_path
         ));
 
+        println!("  Keypair loaded successfully.");
+        println!("  Command: {:?}", args.command);
+
         if let Some(command) = args.command {
             // A valid command is provided, execute it directly
             if let Err(_) = run_command(Some(command), key, args.url, args.use_http, None).await {
@@ -154,6 +157,7 @@ async fn main() {
             }
         }
     } else {
+        println!("  Keypair does not exist, proceeding to menu.");
         // The keypair does not exist, proceed directly to the menu without showing an error
         if let Err(_) = run_menu(args.vim).await {
             println!("  An error occurred, exiting program.");
